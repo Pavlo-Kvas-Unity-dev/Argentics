@@ -1463,6 +1463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1688679306}
   - component: {fileID: 1688679304}
+  - component: {fileID: 1688679307}
   - component: {fileID: 1688679305}
   m_Layer: 0
   m_Name: Killzone
@@ -1510,6 +1511,19 @@ Transform:
   m_Father: {fileID: 1380789763}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1688679307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688679303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9105395f1c8d7499ae8fbc82948e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColor: {r: 0.9528302, g: 0.22022964, b: 0.28808337, a: 1}
 --- !u!1 &1762372662
 GameObject:
   m_ObjectHideFlags: 0
