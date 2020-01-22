@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Argentics._2D
 {
@@ -46,6 +48,7 @@ namespace Argentics._2D
             m_Anim.SetBool("Grounded", m_Grounded);
         }
 
+        [ContextMenu("Hurt")]
         public void Hurt()
         {
             curHealthPoints--;
@@ -55,9 +58,19 @@ namespace Argentics._2D
             }
         }
 
+        [ContextMenu("Die")]
         private void Die()
         {
-            throw new NotImplementedException();
+            StartCoroutine(DieAsync());
+        }
+
+        private IEnumerator DieAsync()
+        {
+            m_Anim.SetTrigger("Died");
+
+            yield return new WaitForSeconds(2);//todo
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void Move(float move, bool jump)
