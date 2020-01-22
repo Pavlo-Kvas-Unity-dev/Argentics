@@ -5,11 +5,11 @@ namespace Argentics._2D
 {
     public class PlatformerCharacter : MonoBehaviour
     {
+        [SerializeField] private int maxHealthPoints = 3;                   // number of times character can be hurt until it dies
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-
         [SerializeField]
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -20,6 +20,7 @@ namespace Argentics._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody m_Rigidbody;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        private int curHealthPoints;
 
         private void Awake()
         {
@@ -27,6 +28,10 @@ namespace Argentics._2D
             m_Rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void Start()
+        {
+            curHealthPoints = maxHealthPoints;
+        }
 
         private void FixedUpdate()
         {
@@ -41,6 +46,19 @@ namespace Argentics._2D
             m_Anim.SetBool("Grounded", m_Grounded);
         }
 
+        public void Hurt()
+        {
+            curHealthPoints--;
+            if (curHealthPoints <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            throw new NotImplementedException();
+        }
 
         public void Move(float move, bool jump)
         {
