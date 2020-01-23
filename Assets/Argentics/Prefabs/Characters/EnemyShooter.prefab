@@ -50,6 +50,7 @@ MonoBehaviour:
   shotPrefab: {fileID: 8489328424080919044, guid: 0535ab98f12016c40a452fa4c4154a65,
     type: 3}
   BarrelEnd: {fileID: 3736400126834423035}
+  maxShootDistance: 5
 --- !u!33 &3219794155560405594
 MeshFilter:
   m_ObjectHideFlags: 0
