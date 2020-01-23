@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class EnemyShooter : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class EnemyShooter : MonoBehaviour
     
     private float? lastShotTime;
     private float reloadTime = 2f;
+    private Transform targetTransform;
+
+    void Awake()
+    {
+        targetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Assert.IsNotNull(targetTransform);
+    }
 
     void Start()
     {
@@ -17,6 +25,15 @@ public class EnemyShooter : MonoBehaviour
 
     void FixedUpdate()
     {
+        var forward = BarrelEnd.TransformDirection(Vector3.forward);
+
+        Vector3 toTarget = targetTransform.position - transform.position;
+
+        if (Vector3.Dot(toTarget, forward) < 0)
+        {
+            TurnAround();
+        }
+         
         FireShot();
     }
 
@@ -28,5 +45,11 @@ public class EnemyShooter : MonoBehaviour
             Instantiate(shotPrefab, BarrelEnd.position, BarrelEnd.rotation);
         }
             
+    }
+
+    [ContextMenu("Turn Around")]
+    void TurnAround()
+    {
+        transform.Rotate(Vector3.up*180);
     }
 }
