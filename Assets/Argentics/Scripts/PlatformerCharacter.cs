@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Argentics._2D
 {
-    public class PlatformerCharacter : MonoBehaviour
+    public class PlatformerCharacter : MonoBehaviour, IDamageable
     {
         [SerializeField] private int maxHealthPoints = 3;                   // number of times character can be hurt until it dies
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
@@ -48,9 +48,11 @@ namespace Argentics._2D
             m_Anim.SetBool("Grounded", m_Grounded);
         }
 
-        [ContextMenu("Hurt")]
-        public void Hurt()
+        [ContextMenu("Damage")]
+        public void Damage()
         {
+            Debug.Log("Player damaged");
+
             curHealthPoints--;
             if (curHealthPoints <= 0)
             {
