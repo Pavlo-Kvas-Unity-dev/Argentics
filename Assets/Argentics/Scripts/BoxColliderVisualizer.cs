@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
-public class BoxColliderVisualizer : MonoBehaviour
+namespace Argentics
 {
-    public Color highlightColor = Color.green;
-
-
-    public void OnDrawGizmos()
+    [RequireComponent(typeof(BoxCollider))]
+    public class BoxColliderVisualizer : MonoBehaviour
     {
-        Color prevColor = Gizmos.color;
+        public Color highlightColor = Color.green;
 
-        Gizmos.color = highlightColor;
 
-        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        public void OnDrawGizmos()
+        {
+            Color prevColor = Gizmos.color;
 
-        Gizmos.DrawWireCube(transform.position + boxCollider.center, boxCollider.size);
+            Gizmos.color = highlightColor;
 
-        Gizmos.color = prevColor;
+            BoxCollider boxCollider = GetComponent<BoxCollider>();
+
+            Gizmos.DrawWireCube(transform.position + boxCollider.center, boxCollider.size);
+
+            Gizmos.color = prevColor;
+        }
+
     }
-
 }
