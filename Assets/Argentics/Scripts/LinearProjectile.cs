@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Argentics;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class LinearProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;
@@ -18,7 +19,8 @@ public class LinearProjectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<IDamageable>().Damage();
-            Destroy(gameObject);
         }
+
+        Destroy(gameObject);
     }
 }
